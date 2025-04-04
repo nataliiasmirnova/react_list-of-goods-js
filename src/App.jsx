@@ -20,8 +20,8 @@ export const goodsFromServer = [
 const SORT_FIELD_AZ = 'AZ';
 const SORT_FIELD_LENGTH = 'length';
 
-function getPreparedGoods(goods, { sortField, isReversed }) {
-  let preparedGoods = [...goods];
+function prepareGoods(goods, { sortField, isReversed }) {
+  const preparedGoods = [...goods];
 
   switch (sortField) {
     case SORT_FIELD_AZ:
@@ -46,7 +46,7 @@ function getPreparedGoods(goods, { sortField, isReversed }) {
 export const App = () => {
   const [sortField, setSortField] = useState('');
   const [isReversed, setIsReversed] = useState(false);
-  const visibleGoods = getPreparedGoods(goodsFromServer, {
+  const visibleGoods = prepareGoods(goodsFromServer, {
     sortField,
     isReversed,
   });
@@ -80,7 +80,7 @@ export const App = () => {
           Reverse
         </button>
 
-        {sortField !== '' && (
+        {(sortField !== '' || isReversed) && (
           <button
             type="button"
             className="button is-danger is-light"

@@ -1,10 +1,7 @@
-// import { GoodCard } from '../GoodCard';
-// import './GoodList.scss'
-
 export const GoodList = ({ goods }) => (
   <div className="GoodList">
     {goods.map(good => (
-      <ul>
+      <ul key={good}>
         <li data-cy="Good">{good}</li>
       </ul>
     ))}
